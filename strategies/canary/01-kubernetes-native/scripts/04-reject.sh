@@ -16,7 +16,7 @@ fi
 
 if [[ -z "$2" ]]
   then        
-    read -p "Stable Image Tag (e.g: v1): "    
+    read -p "Stable Image version/tag (e.g: v1): "    
     if [[ -z $REPLY ]]
     then
       printf "\n...Stable Image tag is mandatory. exiting\n"
