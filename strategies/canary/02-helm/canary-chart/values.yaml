@@ -11,3 +11,7 @@ canary:
 service:
   type: LoadBalancer
   port: 80
+
+prometheus-operator:
+  prometheusOperator:
+    createCustomResource: false

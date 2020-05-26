@@ -5,6 +5,7 @@ TAG=$1
 REPLICAS=$2
 
 # delete namespace if exists
+helm uninstall my-release -n $NAMESPACE
 kubectl delete ns $NAMESPACE
 
 # create namespace

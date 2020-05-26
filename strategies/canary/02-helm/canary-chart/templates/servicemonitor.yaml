@@ -1,12 +1,12 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: myapp
+  name: myapp-helm
   labels:
-    release: myapp
+    release: myapp-helm
 spec:
   selector:
     matchLabels:
-      app: myapp
+      app: myapp-helm
   endpoints:
   - port: metrics

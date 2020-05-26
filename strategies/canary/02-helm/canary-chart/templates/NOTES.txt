@@ -1,1 +1,9 @@
-TODO
+1. Get the application URL by running these commands:
+    NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+    
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} myapp-helm -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo http://$SERVICE_IP:{{ .Values.service.port }}
+
+2. See deployed resources:
+
+  kubectl get all --namespace {{ .Release.Namespace }}
