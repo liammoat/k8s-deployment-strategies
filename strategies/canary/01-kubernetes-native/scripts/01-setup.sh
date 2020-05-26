@@ -34,6 +34,8 @@ printf "\n...creating a service\n"
 kubectl apply -f ../manifests/service.yaml -n $namespace
 
 printf "\n...creating a service monitor\n"
-kubectl apply -f ../manifests/servicemonitor.yaml
+# Todo: Fix below issue
+# unable to recognize "../manifests/servicemonitor.yaml": no matches for kind "ServiceMonitor" in version "monitoring.coreos.com/v1
+kubectl apply -f ../manifests/servicemonitor.yaml -n $namespace
 
 printf "\n...done\n"
