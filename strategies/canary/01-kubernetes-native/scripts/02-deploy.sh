@@ -8,6 +8,7 @@ image_tag=$3
 namespace="canary-native"
 image="lmregistryacr.azurecr.io/canary-app"
 
+
 # accept parameters for number of instances and % of canary (10, 20% canary) and image tag for canary
 if [[ -z "$1" ]] 
   then        
@@ -23,7 +24,7 @@ fi
 
 if [[ -z "$3" ]]
   then        
-    read -p "Image Tag: (e.g: v2)"    
+    read -p "Image Tag (e.g: v2): "    
     if [[ -z $REPLY ]]
     then
       printf "\n...Image tag is mandatory. exiting\n"
