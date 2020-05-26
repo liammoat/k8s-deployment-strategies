@@ -1,4 +1,5 @@
 #!/bin/bash
+printf "\n..Canary Deployment..\n"
 
 instance_count=$1
 canary_percent=$2
@@ -22,7 +23,7 @@ fi
 
 if [[ -z "$3" ]]
   then        
-    read -p "Image Tag: "    
+    read -p "Image Tag: (e.g: v2)"    
     if [[ -z $REPLY ]]
     then
       printf "\n...Image tag is mandatory. exiting\n"

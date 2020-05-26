@@ -1,4 +1,5 @@
 #!/bin/bash
+printf "\n..Setup - Initial Stable Deployment..\n"
 
 instance_count=$1
 namespace="canary-native"
@@ -7,7 +8,7 @@ namespace="canary-native"
 if [[ -z "$1" ]]; # or [ $# -eq 0 ]
   then        
     read -p "Required Number of Instances (default is 10): "
-    instance_count=$REPLY
+    instance_count=${REPLY:-10}
 fi
 
 # delete namespace if exists
@@ -22,13 +23,8 @@ kubectl create ns $namespace
 printf "\n...creating deployment for deployment.yaml\n"
 kubectl apply -f ../manifests/deployment.yaml -n $namespace
 
-if [[ -z "$instance_count" ]]
-then
-  printf "\n...setting replicas to default instance count of 10\n"
-else
-  printf "\n...scaling deployment to $instance_count\n"
-  kubectl scale --replicas=$instance_count deployment/myapp -n $namespace
-fi
+printf "\n...scaling deployment to $instance_count\n"
+kubectl scale --replicas=$instance_count deployment/myapp -n $namespace
 
 printf "\n...creating a service\n"
 kubectl apply -f ../manifests/service.yaml -n $namespace
@@ -38,4 +34,4 @@ printf "\n...creating a service monitor\n"
 # unable to recognize "../manifests/servicemonitor.yaml": no matches for kind "ServiceMonitor" in version "monitoring.coreos.com/v1
 kubectl apply -f ../manifests/servicemonitor.yaml -n $namespace
 
-printf "\n...done\n"
+printf "\n...complete\n"
