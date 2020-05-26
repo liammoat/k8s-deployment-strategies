@@ -1,0 +1,13 @@
+image: liammoat/canary-app
+
+stable:
+  replicas: 10
+  imageTag: v1
+
+canary:
+  replicas: 0
+  imageTag: v1
+
+service:
+  type: LoadBalancer
+  port: 80

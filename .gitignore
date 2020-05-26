@@ -1,3 +1,5 @@
+*.tgz
+
 
 # Created by https://www.gitignore.io/api/helm,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=helm,visualstudiocode

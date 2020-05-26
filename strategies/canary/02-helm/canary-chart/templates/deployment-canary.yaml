@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-canary
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+      instance: myapp-canary
+  replicas: {{ .Values.canary.replicas }}
+  template:
+    metadata:
+      labels:
+        app: myapp
+        instance: myapp-canary
+    spec:
+      containers:
+      - name: myapp-canary
+        image: "{{ .Values.image }}:{{ .Values.canary.imageTag }}"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 8000
+        - containerPort: 8080
