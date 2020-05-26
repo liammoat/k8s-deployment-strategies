@@ -4,6 +4,4 @@
 
 # create namesapce
 
-# deploy initial baseline application
-
-# expose application based on label
+# deploy manifests
