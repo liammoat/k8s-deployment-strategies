@@ -11,29 +11,29 @@ if [[ -z "$1" ]]; # or [ $# -eq 0 ]
 fi
 
 # delete namespace if exists
-echo "...deleting $namespace namespace if it already exists.."
+printf "\n...deleting $namespace namespace if it already exists\n"
 kubectl delete ns $namespace
 
 # create namesapce
-echo "...creating $namespace namespace.."
+printf "\n...creating $namespace namespace\n"
 kubectl create ns $namespace
 
 # deploy manifests
-echo "...creating deployment for deployment.yaml"
+printf "\n...creating deployment for deployment.yaml\n"
 kubectl apply -f ../manifests/deployment.yaml -n $namespace
 
 if [[ -z "$instance_count" ]]
 then
-  echo "...setting replicas to default instance count of 10"
+  printf "\n...setting replicas to default instance count of 10\n"
 else
-  echo "...scaling deployment to $instance_count"
+  printf "\n...scaling deployment to $instance_count\n"
   kubectl scale --replicas=$instance_count deployment/myapp -n $namespace
 fi
 
-echo "...creating a service"
+printf "\n...creating a service\n"
 kubectl apply -f ../manifests/service.yaml -n $namespace
 
-echo "...creating a service monitor"
+printf "\n...creating a service monitor\n"
 kubectl apply -f ../manifests/servicemonitor.yaml
 
-echo "...done"
+printf "\n...done\n"
