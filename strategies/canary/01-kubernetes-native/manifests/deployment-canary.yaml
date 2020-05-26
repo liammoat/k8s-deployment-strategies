@@ -5,12 +5,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: myapp-canary
+      app: myapp
+      instance: canary
   replicas: 0
   template:
     metadata:
       labels:
         app: myapp
+        instance: canary
     spec:
       containers:
       - name: myapp-canary
@@ -18,7 +20,7 @@ spec:
         resources:
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "100m"
         ports:
         - containerPort: 8000
         - containerPort: 8080
