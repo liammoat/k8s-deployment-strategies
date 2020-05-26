@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: myapp
+        app: myapp-canary
     spec:
       containers:
       - name: myapp-canary
