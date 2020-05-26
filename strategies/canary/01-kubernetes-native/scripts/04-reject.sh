@@ -1,0 +1,1 @@
+# set canary deployment to zero and stable to number of instances
