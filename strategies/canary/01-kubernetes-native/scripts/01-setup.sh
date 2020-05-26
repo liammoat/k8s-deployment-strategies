@@ -4,6 +4,6 @@
 
 # create namesapce
 
-
 # deploy initial baseline application
-lmregistryacr.azurecr.io/canary-app
+
+# expose application based on label
