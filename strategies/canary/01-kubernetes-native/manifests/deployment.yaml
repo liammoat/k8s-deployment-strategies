@@ -2,6 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myapp
+  labels:
+    app: myapp
+  annotations:
+    linkerd.io/inject: enabled
+  
 spec:
   selector:
     matchLabels:
@@ -9,14 +14,16 @@ spec:
       instance: stable
   replicas: 10
   template:
-    metadata:
+    metadata:    
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: myapp
         instance: stable
     spec:
       containers:
       - name: myapp
-        image: lmregistryacr.azurecr.io/canary-app:v1
+        image: liammoat/canary-app:v1
         resources:
           limits:
             memory: "128Mi"

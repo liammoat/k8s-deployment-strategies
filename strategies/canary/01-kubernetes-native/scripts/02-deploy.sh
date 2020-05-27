@@ -4,9 +4,9 @@ printf "\n..Canary Deployment..\n"
 instance_count=$1
 canary_percent=$2
 image_tag=$3
+namespace=$4
 
-namespace="canary-native"
-image="lmregistryacr.azurecr.io/canary-app"
+image="liammoat/canary-app"
 
 
 # accept parameters for number of instances and % of canary (10, 20% canary) and image tag for canary
@@ -31,6 +31,12 @@ if [[ -z "$3" ]]
       exit 0
     fi
     image_tag=$REPLY
+fi
+
+if [[ -z "$4" ]]; 
+  then        
+    read -p "Target Namespace (default is canary-native) : "
+    namespace=${REPLY:-"canary-native"}
 fi
 
 # updates canary deployment
