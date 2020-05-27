@@ -17,14 +17,6 @@ if [[ -z "$2" ]];
     namespace=${REPLY:-"canary-native"}
 fi
 
-# delete namespace if exists
-printf "\n...deleting $namespace namespace if it already exists\n"
-kubectl delete ns $namespace
-
-# create namesapce
-printf "\n...creating $namespace namespace\n"
-kubectl create ns $namespace
-
 # deploy manifests
 printf "\n...creating deployment for deployment.yaml\n"
 kubectl apply -f ../manifests/deployment.yaml -n $namespace
