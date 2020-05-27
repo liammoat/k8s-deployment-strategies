@@ -3,9 +3,9 @@ printf "\n..Promote Canary Image to Stable Deployment..\n"
 
 instance_count=$1
 image_tag=$2
+namespace=$3
 
-namespace="canary-native"
-image="lmregistryacr.azurecr.io/canary-app"
+image="liammoat/canary-app"
 
 # accept parameters for number of instances 
 if [[ -z "$1" ]] 
@@ -23,6 +23,12 @@ if [[ -z "$2" ]]
       exit 0
     fi
     image_tag=$REPLY
+fi
+
+if [[ -z "$3" ]]; 
+  then        
+    read -p "Target Namespace (default is canary-native) : "
+    namespace=${REPLY:-"canary-native"}
 fi
 
 new_image=$image":"$image_tag

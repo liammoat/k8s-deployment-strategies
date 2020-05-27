@@ -3,9 +3,9 @@ printf "\n..Reject Canary Deployment..\n"
 
 instance_count=$1
 stable_image_tag=$2
+namespace=$3
 
-namespace="canary-native"
-image="lmregistryacr.azurecr.io/canary-app"
+image="liammoat/canary-app"
 
 
 if [[ -z "$1" ]]
@@ -23,6 +23,12 @@ if [[ -z "$2" ]]
       exit 0
     fi
     stable_image_tag=$REPLY
+fi
+
+if [[ -z "$3" ]]; 
+  then        
+    read -p "Target Namespace (default is canary-native) : "
+    namespace=${REPLY:-"canary-native"}
 fi
 
 # set canary deployment to zero and stable to number of instances
