@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fortio
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   replicas: 1
   selector:
@@ -13,8 +11,6 @@ spec:
     metadata:
       labels:
         app: fortio
-      annotations:
-        linkerd.io/inject: enabled
     spec:
       containers:
       - name: fortio

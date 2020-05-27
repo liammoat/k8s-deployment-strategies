@@ -4,9 +4,6 @@ metadata:
   name: myapp
   labels:
     app: myapp
-  annotations:
-    linkerd.io/inject: enabled
-  
 spec:
   selector:
     matchLabels:
@@ -15,8 +12,6 @@ spec:
   replicas: 10
   template:
     metadata:    
-      annotations:
-        linkerd.io/inject: enabled
       labels:
         app: myapp
         instance: stable

@@ -35,11 +35,11 @@ kubectl scale --replicas=$instance_count deployment/myapp -n $namespace
 printf "\n...creating a service\n"
 kubectl apply -f ../manifests/service.yaml -n $namespace
 
-# printf "\n...creating a service monitor\n"
-# kubectl apply -f ../manifests/servicemonitor.yaml -n $namespace 
-
 printf "\n...setting up fortio pod\n"
 kubectl apply -f ../manifests/fortio.yaml -n $namespace
+
+# printf "\n...creating a service monitor\n"
+# kubectl apply -f ../misc/servicemonitor.yaml -n $namespace 
 
 printf "\n...complete\n"
 

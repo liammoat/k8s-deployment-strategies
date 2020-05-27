@@ -12,9 +12,11 @@ fi
 printf "\n...deleting $namespace namespace if it already exists\n"
 kubectl delete ns $namespace
 
-# create namesapce
+# create namespace
 printf "\n...creating $namespace namespace\n"
 kubectl create ns $namespace
 
-helm install myapp stable/prometheus-operator -n $namespace
+# annotate namespace for linkerd
+printf "\n...annotating $namespace for linkerd auto injection\n"
+kubectl annotate namespace $namespace linkerd.io/inject=enabled
 
