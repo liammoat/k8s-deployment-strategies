@@ -18,6 +18,9 @@ Canary deployment strategy involves deploying new versions of application next t
 #### Service Mesh
 [Example](./strategies/canary/04-service-mesh)
 
+## Please note
+These samples are intended for demonstration purposes only. We would not recommend referencing these for production consumption.
+
 ## Contributors
 
 * **Liam Moat**
