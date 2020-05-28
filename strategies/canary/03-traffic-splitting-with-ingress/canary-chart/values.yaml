@@ -1,0 +1,18 @@
+image: liammoat/canary-app
+replicas: 3
+
+stable:
+  weight: 90
+  imageTag: v1
+
+canary:
+  weight: 10
+  imageTag: v2
+
+service:
+  type: ClusterIP
+  port: 80
+
+prometheus-operator:
+  prometheusOperator:
+    createCustomResource: false

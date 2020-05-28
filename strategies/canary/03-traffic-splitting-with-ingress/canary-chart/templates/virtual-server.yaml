@@ -1,0 +1,22 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: test-ingress
+spec:
+  host: k8s.liammoat.com
+  upstreams:
+  - name: stable
+    service: myapp-ingress
+    port: {{ .Values.service.port }}
+  - name: canary
+    service: myapp-ingress-canary
+    port: {{ .Values.service.port }}
+  routes:
+  - path: /
+    splits:
+    - weight: {{ .Values.stable.weight }}
+      action:
+        pass: stable
+    - weight: {{ .Values.canary.weight }}
+      action:
+        pass: canary
