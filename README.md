@@ -24,4 +24,4 @@ These samples are intended for demonstration purposes only. We would not recomme
 
 * **Suren Mohandass**
 
-    * GitHub: [@surenmcode](https://github.com/surenmcode)
+    * GitHub: [@suren-m](https://github.com/suren-m)
