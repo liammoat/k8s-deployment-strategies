@@ -12,7 +12,3 @@ canary:
 service:
   type: ClusterIP
   port: 80
-
-prometheus-operator:
-  prometheusOperator:
-    createCustomResource: false
