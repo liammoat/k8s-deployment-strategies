@@ -1,0 +1,26 @@
+# Canary Deployments using Flagger on Linkerd Mesh - See https://linkerd.io/2/tasks/canary-release/
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+    name: myapp
+spec:
+    targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: myapp
+    service:
+    port: 8080
+    analysis:
+    interval: 10s   # schedule interval (default 60s)
+    threshold: 5    # max number of failed metric checks before rollback
+    stepWeight: 10  # canary increment step
+    maxWeight: 100  # max traffic percentage routed to canary
+    metrics:
+    - name: request-success-rate # minimum req success rate (non 5xx responses) percentage (0-100)        
+        thresholdRange: 
+        min: 99
+        interval: 1m
+    - name: request-duration    # maximum req duration P99 milliseconds
+        thresholdRange:
+        max: 500
+        interval: 1m
