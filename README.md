@@ -1,4 +1,5 @@
 # Kubernetes Deployment Strategies
+A collection of example implementations for Kubernetes deployment strategies.
 
 ## Strategies
 
