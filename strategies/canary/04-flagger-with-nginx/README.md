@@ -35,7 +35,11 @@ kubectl get ev -n canary-flagger -w
 
 #### Enabling metrics
 
-To enable metrics such as below in `canary.yaml`, make sure that the traffic comes through to `app-canary` service and is monitored by `flagger-prometheus`. Flagger depends on this to make decisions, if this component is not working, then canary deployments will always fail. 
+Built-in Metrics from flagger are enabled in `canary.yaml` (as below). 
+To ensure canary deployments are working as intended and traffic shifting happens correctly,
+* Make sure that the traffic comes through to `app-canary` service 
+* Make sure the app is monitored by `flagger-prometheus`. Flagger depends on this to make decisions, if this component is not working, then canary deployments will always fail. 
+* Do a Port-forward on flagger/prometheus service in ingress-nginx namespace and ensure the app is registered as a target and is scraped correctly.
 
 ```
 metrics:
