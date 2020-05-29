@@ -20,7 +20,7 @@ spec:
          - "-allow-initial-errors"  
          - "-t"       
          - "0"
-         - "http://51.11.169.182" # change above to your private ip or public ip of ingress controller or hostname if configured          
+         - "http://nginx-ingress-controller.ingress-nginx" # change above to your ip or name of ingress controller or hostname if configured          
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
