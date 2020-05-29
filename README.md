@@ -9,7 +9,8 @@ Canary deployment strategy involves deploying new versions of application next t
 1. [Kubernetes Native](./strategies/canary/01-kubernetes-native)
 2. [Helm](./strategies/canary/02-helm)
 3. [Traffic Splitting with Ingress](./strategies/canary/03-traffic-splitting-with-ingress)
-4. [Service Mesh](./strategies/canary/04-service-mesh)
+4. [Flagger with Nginx Ingress Controller](./strategies/canary/04-flagger-with-nginx)
+5. [Flagger with Service Mesh](./strategies/canary/05-flagger-with-servicemesh)
 
 ## Please note
 These samples are intended for demonstration purposes only. We would not recommend referencing these for production consumption.
