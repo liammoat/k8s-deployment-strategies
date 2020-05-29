@@ -14,6 +14,11 @@ spec:
     apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     name: myapp
+  # HPA reference (optional)
+  autoscalerRef:
+    apiVersion: autoscaling/v2beta1
+    kind: HorizontalPodAutoscaler
+    name: myapp
   service:
     port: 8080
   analysis:
