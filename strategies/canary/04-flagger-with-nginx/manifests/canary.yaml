@@ -21,8 +21,10 @@ spec:
     threshold: 5    # max number of failed metric checks before rollback
     stepWeight: 10  # canary increment step
     maxWeight: 100  # max traffic percentage routed to canary
+
     # enable metrics when you're sure the traffic is coming through to canary and is scraped by flagger-promethues    metrics:
-    - name: request-success-rate # minimum req success rate (non 5xx responses) percentage (0-100)        
+    metrics:
+    - name: request-success-rate # minimum req success rate (non 5xx responses) percentage (0-100)            
       thresholdRange: 
         min: 99
       interval: 1m

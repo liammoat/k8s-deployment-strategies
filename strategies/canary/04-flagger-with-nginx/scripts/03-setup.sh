@@ -24,9 +24,6 @@ kubectl apply -f ../manifests/deployment.yaml -n $namespace
 printf "\n...scaling deployment to $instance_count\n"
 kubectl scale --replicas=$instance_count deployment/myapp -n $namespace
 
-printf "\n...creating a service\n"
-kubectl apply -f ../manifests/service.yaml -n $namespace
-
 printf "\n...setting up ingress resource\n"
 kubectl apply -f ../manifests/ingress.yaml -n $namespace
 
