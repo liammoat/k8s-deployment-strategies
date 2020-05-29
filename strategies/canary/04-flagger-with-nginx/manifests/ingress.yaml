@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: myapp
+  labels:
+    app: myapp
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules: # adjust this as required if you are also using a hostname
+  - http:
+      paths:
+      - backend:
+          serviceName: myapp
+          servicePort: 8080
