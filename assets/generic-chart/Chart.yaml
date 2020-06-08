@@ -1,5 +1,0 @@
-apiVersion: v1
-appVersion: "1.0"
-description: Helm 2.x and 3.x Compatible Generic Chart for All TNT/Fedex Kubernetes Ready Charts
-name: apps-generic-chart
-version: 0.1.9
