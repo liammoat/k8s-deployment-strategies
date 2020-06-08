@@ -1,4 +1,4 @@
-# Canary - Kubernetes Native
+# Canary - Kubernetes
 
 The purpose of this demo is to show the mechanics of using a Kubernetes service to perform a simple canary deployment. The demo changes the distribution of traffic between a stable and canary deployment by altering the number of replicas.
 
@@ -59,4 +59,4 @@ kubectl scale --replicas=10 deployment/myapp -n canary-native
 kubectl scale --replicas=0 deployment/myapp-canary -n canary-native
 ```
 
-[[Next]](../02-helm/)
+[[Next]](../02-kubernetes-with-helm/)

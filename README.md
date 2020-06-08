@@ -6,8 +6,8 @@ A collection of example implementations for Kubernetes deployment strategies.
 ### Canary
 Canary deployment strategy involves deploying new versions of application next to stable production versions to see how the canary version compares against the baseline before promoting or rejecting the deployment. 
 
-1. [Kubernetes Native](./strategies/canary/01-kubernetes-native)
-2. [Helm](./strategies/canary/02-helm)
+1. [Kubernetes](./strategies/canary/01-kubernetes)
+2. [Kubernetes with Helm](./strategies/canary/02-kubernetes-with-helm)
 3. [Traffic Splitting with Ingress](./strategies/canary/03-traffic-splitting-with-ingress)
 4. [Flagger with Ingress](./strategies/canary/04-flagger-with-ingress)
 5. [Flagger with Service Mesh](./strategies/canary/05-flagger-with-servicemesh)
