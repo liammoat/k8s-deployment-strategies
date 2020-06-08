@@ -101,3 +101,5 @@ kubectl port-forward service/myapp-canary 8080 -n canary-flagger
 ```bash
 kubectl get ev -n canary-flagger -w
 ```
+
+[Next - Flagger with Service Mesh](../05-flagger-with-service-mesh)
