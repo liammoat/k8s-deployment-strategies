@@ -65,31 +65,30 @@ kubectl apply -f ./manifests/fortio.yaml -n canary-flagger
 kubectl set image deployment/myapp myapp=liammoat/canary-app:v2 -n canary-flagger
 ```
 
-# Stuff
+## Troubleshooting
 
+### Check for incoming traffic
+Since this demo doesn't use Service Mesh or Grafana, use one of the following options to check for incoming traffic:
 
+1. Follow the logs on the Pod itself:
 
+    ```bash
+    kubectl logs pod/myapp-{podid} --follow -n canary-flagger             
+    ```
 
-#### Note: This demo was originally created on AKS. There may be restrictions on private clusters especially around Ingress.
+2. Check Flagger's Prometheus dashboard:
 
-Since this demo doesn't use service mesh or grafana, use something like below to check for incoming traffic from fortio
+    ```bash
+    kubectl port-forward service/flagger-pormetheus 9090 -n ingress-nginx
+    ```
+
+3. Manually send traffic to Canary service:
 
 ```
-kubectl logs pod/myapp-{podid} --follow -n canary-flagger             
+kubectl port-forward service/myapp-canary 8080 -n canary-flagger
 ```
 
-Or check flagger's prometheus dashboard by port-forwarding to it (inside ingress-nginx ns)
-
-```
-kubectl port-forward service/flagger-pormetheus 9090 -n ingress-nginx
-```
-
-To manually check canary
-```
-port-forward service/myapp-canary 8080 -n canary-flagger
-```
-
-#### Doing canary deployments (Important)
+### Notes for performing a canary deployments
 
 * With Fortio (or any load testing tool), make sure to send traffic via ingress-controller 
 * You can send the traffic to private-ip of the ingress-controller if needed as well.
@@ -97,35 +96,8 @@ port-forward service/myapp-canary 8080 -n canary-flagger
 
 * It's highly recommended to Grafana or something similar to monitor the success rate instead of relying on logs during deployments.
 
-#### Check recent events when things don't  go as expected
+### Check recent events 
 
-```
+```bash
 kubectl get ev -n canary-flagger -w
-```
-
-#### Enabling metrics
-
-#### Common issues (no values found on nginx metric to canary)
-
-See: 
-
-* https://github.com/weaveworks/flagger/issues/421
-* https://docs.flagger.app/v/master/tutorials/prometheus-operator
-
-To ensure canary deployments are working as intended and traffic shifting happens correctly,
-* Make sure that the traffic comes through to `app-canary` service 
-* Make sure the app is monitored by `flagger-prometheus`. Flagger depends on this to make decisions, if this component is not working, then canary deployments will always fail. 
-* Do a Port-forward on flagger/prometheus service in ingress-nginx namespace and ensure the app is registered as a target and is scraped correctly.
-
-```
-metrics:
-- name: request-success-rate 
-# minimum req success rate (non 5xx responses)percentage (0-100)        
-    thresholdRange: 
-    min: 99
-    interval: 1m
-- name: request-duration    # maximum req duration P99 milliseconds
-    thresholdRange:
-    max: 500
-    interval: 1m
 ```
