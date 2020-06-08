@@ -1,22 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-ingress-canary
+  name: myapp
+  labels:
+    app: myapp
 spec:
   selector:
     matchLabels:
-      app: myapp-ingress
-      instance: myapp-ingress-canary
+      app: myapp
+      instance: stable
   replicas: {{ .Values.replicas }}
   template:
-    metadata:
+    metadata:    
       labels:
-        app: myapp-ingress
-        instance: myapp-ingress-canary
+        app: myapp
+        instance: stable
     spec:
       containers:
-      - name: myapp-ingress-canary
-        image: "{{ .Values.image }}:{{ .Values.canary.imageTag }}"
+      - name: myapp
+        image: "{{ .Values.image }}:{{ .Values.stable.imageTag }}"
         resources:
           limits:
             memory: "128Mi"

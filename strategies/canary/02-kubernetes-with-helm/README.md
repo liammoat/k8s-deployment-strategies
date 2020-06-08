@@ -53,4 +53,4 @@ helm upgrade my-release \
 helm rollback my-release -n canary-helm
 ```
 
-[[Next]](../03-traffic-splitting-with-ingress/)
+[[Next - Traffic Splitting with Helm]](../03-traffic-splitting-with-ingress/)

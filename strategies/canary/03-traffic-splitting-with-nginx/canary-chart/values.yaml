@@ -2,12 +2,12 @@ image: liammoat/canary-app
 replicas: 3
 
 stable:
-  weight: 90
+  weight: 50
   imageTag: v1
 
 canary:
-  weight: 10
-  imageTag: v2
+  weight: 50
+  imageTag: v1
 
 service:
   type: ClusterIP

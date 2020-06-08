@@ -59,4 +59,4 @@ kubectl scale --replicas=10 deployment/myapp -n canary-k8s
 kubectl scale --replicas=0 deployment/myapp-canary -n canary-k8s
 ```
 
-[[Next]](../02-kubernetes-with-helm/)
+[[Next - Kubernetes with Helm]](../02-kubernetes-with-helm/)
