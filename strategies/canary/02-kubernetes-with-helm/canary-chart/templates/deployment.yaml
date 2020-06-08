@@ -1,21 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-helm
+  name: myapp
+  labels:
+    app: myapp
 spec:
   selector:
     matchLabels:
-      app: myapp-helm
-      instance: myapp-helm-stable
+      app: myapp
+      instance: stable
   replicas: {{ .Values.stable.replicas }}
   template:
-    metadata:
+    metadata:    
       labels:
-        app: myapp-helm
-        instance: myapp-helm-stable
+        app: myapp
+        instance: stable
     spec:
       containers:
-      - name: myapp-helm
+      - name: myapp
         image: "{{ .Values.image }}:{{ .Values.stable.imageTag }}"
         resources:
           limits:
