@@ -2,6 +2,8 @@
 
 A collection of example implementations for Kubernetes deployment strategies.
 
+**Note:** These samples are intended for demonstration purposes only. We would not recommend referencing these for production consumption.
+
 ## Strategies
 
 ### Canary
@@ -11,10 +13,6 @@ Canary deployment strategy involves deploying new versions of application next t
 2. [Kubernetes with Helm](./strategies/canary/02-kubernetes-with-helm)
 3. [Traffic Splitting with NGINX](./strategies/canary/03-traffic-splitting-with-nginx)
 4. [Flagger with NGINX](./strategies/canary/04-flagger-with-nginx)
-5. [Flagger with Service Mesh](./strategies/canary/05-flagger-with-servicemesh)
-
-## Please note
-These samples are intended for demonstration purposes only. We would not recommend referencing these for production consumption.
 
 ## Contributors
 
