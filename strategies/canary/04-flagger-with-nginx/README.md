@@ -1,5 +1,75 @@
 # Canary - Flagger with NGINX
 
+[Flagger](https://flagger.app/) is a Kubernetes operator that automates the promotion of canary deployments within a Kubernetes environment. It supports a number of tools including Istio, Linkerd, App Mesh, Contour, Gloo, NGINX. In this demonstration we will be using Flagger with NGINX to perform progressive traffic shifting (canary deployment).
+
+## Steps
+
+### Install NGINX Ingress Controller
+If you don't have an NGINX Ingress Controller already, use the commands below to deploy one using Helm.
+
+```bash
+# add the official stable repo
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+
+# use Helm to deploy an NGINX ingress controller
+helm install nginx-ingress stable/nginx-ingress \
+    --namespace ingress-nginx \
+    --set controller.replicaCount=2 \
+    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.metrics.enabled=true \
+    --set controller.podAnnotations."prometheus\.io/scrape"=true \
+    --set controller.podAnnotations."prometheus\.io/port"=10254
+```
+
+### Install Flagger
+If you don't have Flagger already installed, use the commands below to deploy it using Helm.
+
+```bash
+# add the official flagger repo
+helm repo add flagger https://flagger.app
+
+# use Helm to install Flagger and the Prometheus add-on
+helm upgrade -i flagger flagger/flagger \
+    --namespace ingress-nginx \
+    --set prometheus.install=true \
+    --set meshProvider=nginx
+```
+
+### Setup the environment
+
+```bash
+# create a namespace
+kubectl create ns canary-flagger
+
+# create an initial deployment
+kubectl apply -f ./manifests/deployment.yaml -n canary-flagger
+
+# create a Horizontal Pod Autoscaler
+kubectl apply -f ./manifests/hpa.yaml -n canary-flagger
+
+# create an ingress resource"
+kubectl apply -f ./manifests/ingress.yaml -n canary-flagger
+
+# create a canary custom resource
+kubectl apply -f ./manifests/canary.yaml -n canary-flagger
+
+# create a fortio pod
+kubectl apply -f ./manifests/fortio.yaml -n canary-flagger
+```
+
+### Create a canary deployment
+
+```bash
+# update the image of the deployment
+kubectl set image deployment/myapp myapp=liammoat/canary-app:v2 -n canary-flagger
+```
+
+# Stuff
+
+
+
+
 #### Note: This demo was originally created on AKS. There may be restrictions on private clusters especially around Ingress.
 
 Since this demo doesn't use service mesh or grafana, use something like below to check for incoming traffic from fortio

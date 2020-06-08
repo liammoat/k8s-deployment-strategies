@@ -20,7 +20,7 @@ spec:
          - "-allow-initial-errors"  
          - "-t"       
          - "0"
-         - "http://k8s.liammoat.com/"
+         - "http://k8s.liammoat.com/canary-nginx"
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

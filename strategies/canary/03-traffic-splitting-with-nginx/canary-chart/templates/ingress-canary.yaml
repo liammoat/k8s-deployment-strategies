@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: myapp-canary
+  labels:
+    app: myapp
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "{{ .Values.canary.weight }}"
+spec:
+  rules:
+  - host: k8s.liammoat.com
+    http:
+      paths:
+      - path: /canary-nginx(/|$)(.*)
+        backend:
+          serviceName: myapp-canary
+          servicePort: {{ .Values.service.port }}

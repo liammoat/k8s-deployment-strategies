@@ -5,6 +5,7 @@ The previous two demos have used a Kubernetes service to distribute traffic over
 ## Steps
 
 ### Install NGINX Ingress Controller
+If you don't have an NGINX Ingress Controller already, use the commands below to deploy one using Helm.
 
 ```bash
 # add the official stable repo
@@ -25,50 +26,47 @@ helm install nginx-ingress stable/nginx-ingress \
 
 ```bash
 # create a namespace
-kubectl create ns canary-ingress
+kubectl create ns canary-nginx
 
 # package helm chart
 helm package ./canary-chart
 
 # install helm chart
 helm install my-release \
-        ./canary-chart-0.1.0.tgz -n canary-ingress
+        ./canary-chart-0.1.0.tgz -n canary-nginx
 ```
 
 ### Create a canary deployment
 
 ```bash
 # upgrade helm release
-# - set stable weight
 # - set canary imageTag and weight
 helm upgrade my-release \
         --reuse-values \
-        --set stable.weight=70 \
         --set canary.imageTag=v2 \
         --set canary.weight=30 \
-        ./canary-chart-0.1.0.tgz -n canary-ingress
+        ./canary-chart-0.1.0.tgz -n canary-nginx
 ```
 
 #### Promote canary
 
 ```bash
 # upgrade helm release
-# - set stable imageTag and weight
+# - set stable imageTag
 # - set canary imageTag and weight
 helm upgrade my-release \
         --reuse-values \
         --set stable.imageTag=v2 \
-        --set stable.weight=50 \
         --set canary.imageTag=v2 \
         --set canary.weight=50 \
-        ./canary-chart-0.1.0.tgz -n canary-ingress
+        ./canary-chart-0.1.0.tgz -n canary-nginx
 ```
 
 #### Reject canary
 
 ```bash
 # rollback helm release
-helm rollback my-release -n canary-ingress
+helm rollback my-release -n canary-nginx
 ```
 
 [[Next - Flagger with NGINX]](../04-flagger-with-nginx/)

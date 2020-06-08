@@ -1,5 +1,3 @@
-# Canary Deployments using Flagger on Linkerd Mesh - See https://linkerd.io/2/tasks/canary-release/
-
 apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:

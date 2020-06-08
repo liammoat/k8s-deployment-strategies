@@ -20,7 +20,7 @@ spec:
          - "-allow-initial-errors"  
          - "-t"       
          - "0"
-         - "http://nginx-ingress-controller.ingress-nginx" # change above to your ip or name of ingress controller or hostname if configured          
+         - "http://k8s.liammoat.com/canary-flagger/"
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
