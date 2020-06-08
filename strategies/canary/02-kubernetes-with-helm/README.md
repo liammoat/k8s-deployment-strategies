@@ -1,4 +1,4 @@
-# Kubernetes with Helm
+# Canary - Kubernetes with Helm
 
 This demonstration takes the Kubernetes manifest files from the previous [demo](../01-kubernetes/) and packages them into a Helm chart.
 
