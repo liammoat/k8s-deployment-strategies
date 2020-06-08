@@ -4,8 +4,6 @@ metadata:
   name: myapp-canary
   labels:
     app: myapp
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   selector:
     matchLabels:
@@ -17,8 +15,6 @@ spec:
       labels:
         app: myapp
         instance: canary
-      annotations:
-        linkerd.io/inject: enabled
     spec:
       containers:
       - name: myapp-canary
