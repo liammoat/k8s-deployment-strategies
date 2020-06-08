@@ -1,4 +1,4 @@
-#### Flagger with Ingress
+# Canary - Flagger with NGINX
 
 #### Note: This demo was originally created on AKS. There may be restrictions on private clusters especially around Ingress.
 
